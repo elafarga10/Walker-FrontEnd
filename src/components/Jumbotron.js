@@ -1,14 +1,20 @@
 import React from 'react';
-import { Jumbotron as Jumbo, Container } from 'react-bootstrap';
+import { Jumbotron as Jumbo, Container, Button } from 'react-bootstrap';
+import { InfoCards } from './HomeCards';
+import { NavigationBar } from './Navigation';
 import styled from 'styled-components';
+import dogwalking from '../images/woods.jpg';
 
 const Styles = styled.div`
 	.jumbo {
+		background: url(${dogwalking}) no-repeat fixed bottom;
 		background-size: cover;
 		color: #efefef;
-		height: 200px;
-		position: relative;
+        height: 100vh;
+        width: 100%;
+		position: absolute;
 		z-index: -2;
+		margin-bottom: 0px;
 	}
 	.overlay {
 		background-color: #000;
@@ -20,16 +26,39 @@ const Styles = styled.div`
 		right: 0;
 		z-index: -1;
 	}
+	.cards {
+		margin-top: 100px;
+	}
+	.text {
+		margin: 0 auto;
+		text-align: center;
+	}
+	.button {
+		z-index: 10000;
+	}
 `;
 
 export const Jumbotron = () => (
-	<Styles>
-		<Jumbo fluid className='jumbo'>
-			<div className='overlay'></div>
-			<Container>
-				<h1>Welcome</h1>
-				<p>Learn to code from my Youtube videos</p>
-			</Container>
-		</Jumbo>
-	</Styles>
-);
+					<Styles>
+						<Jumbo fluid className='jumbo'>
+							<div className='overlay'></div>
+							<Container>
+								<div className='text'>
+									<div className='content'>
+										<h1>Welcome to Walker</h1>
+										<p>
+											We make it easy to track your daily walks with your furry
+											friend!
+										</p>
+										<Button variant='outline-light' href='/'>
+											Get Started
+										</Button>
+									</div>
+								</div>
+								<div className='cards'>
+									<InfoCards />
+								</div>
+							</Container>
+						</Jumbo>
+					</Styles>
+				);

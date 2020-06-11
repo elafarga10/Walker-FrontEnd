@@ -5,22 +5,34 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
 	.navbar {
-		background-color: #000;
-		height: 85px;
+		height: 55px;
+		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+		margin-bottom: 0px;
 	}
 	.item {
 		margin-right: 20px;
 	}
 
 	a,
-	.navbar-brand,
 	.navbar-nav .nav-link {
-		color: #efefef;
+		color: #5f9ea0;
+		font-size: 16px;
+		font-weight: bold;
 		&:hover {
 			color: black;
 		}
 	}
+	.navbar-nav {
+		margin-right: 100px;
+	}
 
+	.navbar-brand {
+		margin-left: 120px;
+		color: #5f9ea0;
+		&:hover {
+			color: black;
+		}
+	}
 `;
 
 export const NavigationBar = () => (
