@@ -3,15 +3,15 @@ import { Jumbotron as Jumbo, Container, Button } from 'react-bootstrap';
 import { InfoCards } from './HomeCards';
 import { NavigationBar } from './Navigation';
 import styled from 'styled-components';
-import dogwalking from '../images/woods.jpg';
+import dogwalking from '../images/dog-walking3.jpg';
 
 const Styles = styled.div`
 	.jumbo {
 		background: url(${dogwalking}) no-repeat fixed bottom;
 		background-size: cover;
 		color: #efefef;
-        height: 100vh;
-        width: 100%;
+		height: 100vh;
+		width: 100%;
 		position: absolute;
 		z-index: -2;
 		margin-bottom: 0px;
@@ -27,14 +27,20 @@ const Styles = styled.div`
 		z-index: -1;
 	}
 	.cards {
-		margin-top: 100px;
+		margin-top: 30px;
+		padding-top: 0;
 	}
 	.text {
 		margin: 0 auto;
 		text-align: center;
+		padding-top: 0;
 	}
 	.button {
 		z-index: 10000;
+	}
+
+	.content {
+		padding: 70px 0;
 	}
 `;
 

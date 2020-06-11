@@ -9,8 +9,8 @@ import styled from 'styled-components';
 const Styles = styled.div`
 	.card {
 		margin-right: 45px;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		background-color: #000;
+        border: none;
+		background-color: transparent;
     }
     
 
@@ -91,22 +91,20 @@ export const InfoCards = () => (
 						<CardGroup>
 							<LinkContainer to={`/`}>
 								<Card className='card'>
-									<Card.Img variant='top' src={dog1} />
+									
 									<Card.Body>
 										<Card.Title className='text'>
 											Not just for your dog
 										</Card.Title>
 										<Card.Text className='text'>
-											Not only can you use Walker as a way to track your dog's
-											progress but also your own! With the ability to record
-											distance and time you can easily keep a record of your
+											With the ability to record distance and time you can easily keep a record of your own
 											personal best walks
 										</Card.Text>
 									</Card.Body>
 								</Card>
 							</LinkContainer>
 							<Card>
-								<Card.Img variant='top' src={dog2} />
+							
 								<Card.Body className='text'>
 									<Card.Title>Easily track weight</Card.Title>
 									<Card.Text>
@@ -117,7 +115,7 @@ export const InfoCards = () => (
 								</Card.Body>
 							</Card>
 							<Card>
-								<Card.Img variant='top' src={dog3} />
+								
 								<Card.Body className='text'>
 									<Card.Title>Visual Progress</Card.Title>
 									<Card.Text>
