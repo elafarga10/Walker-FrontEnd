@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card, Modal, Form } from 'react-bootstrap';
 import styled from 'styled-components';
+import CreateWalk from './CreateWalk';
 
 let Styles = styled.div`
 	.stats {
@@ -90,7 +91,10 @@ class Walks extends React.Component {
 		this.state = {
 			show: false,
 			setShow: false,
-			refresh: false,
+            refresh: false,
+            distance: null,
+            time: null,
+            weight: null
 		};
 	}
 	handleClose = () => {
