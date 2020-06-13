@@ -56,7 +56,7 @@ export const Jumbotron = () => (
 											We make it easy to track your daily walks with your furry
 											friend!
 										</p>
-										<Button variant='outline-light' href='/'>
+										<Button variant='outline-light' href='/signup'>
 											Get Started
 										</Button>
 									</div>

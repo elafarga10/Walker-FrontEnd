@@ -1,5 +1,6 @@
 import React from 'react';
 import { Jumbotron as Jumbo, Container, Button } from 'react-bootstrap';
+import Walks from './Walks';
 import styled from 'styled-components';
 import dogwalking from '../images/dog-walking3.jpg';
 
@@ -39,23 +40,80 @@ const Styles = styled.div`
 
 	.content {
 		padding: 70px 0;
-	}
+    }
+    .edit-text{
+        margin-bottom: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: #efefef;
+        opacity: 0.9;
+    }
 `;
 
-export const LoggedInJumbo = () => (
-	<Styles>
-		<Jumbo fluid className='jumbo'>
-			<div className='overlay'></div>
-			<Container>
-				<div className='text'>
-					<div className='content'>
-						<h1>Begin Adding Walks!</h1>
-						<p>
-							To add a walk, simply click the 'Add Walk' button in the navigation bar above!
-						</p>
-					</div>
+class LoggedInJumbo extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			refresh: false,
+		};
+	}
+
+	componentDidMount() {
+		this.props.getWalks();
+	}
+
+	render() {
+		if (this.props.walks === null) {
+			return null;
+		}
+		let filteredWalks = this.props.walks.filter(
+			(walk) => walk.owner === this.props.username
+		);
+		console.log(filteredWalks);
+		let ownedWalks = filteredWalks.map((walk) => {
+			return (
+				<div id={walk.id}>
+					<Walks
+						date={walk.date}
+						distance={walk.distance}
+						time={walk.time}
+						weight={walk.weight}
+						image_url={walk.image_url}
+					/>
 				</div>
-			</Container>
-		</Jumbo>
-	</Styles>
-);
+			);
+		});
+		return (
+			<Styles>
+				<Jumbo fluid className='jumbo'>
+					<div className='overlay'></div>
+					<Container>
+						<div className='text'>
+							<div
+								className='content'
+								style={{ display: ownedWalks.length === 0 ? 'block' : 'none' }}>
+								<h1>Begin Adding Walks!</h1>
+								<p>
+									To add a walk, simply click the 'Add Walk' button in the
+									navigation bar above!
+								</p>
+							</div>
+							<div
+								className='edit-text'
+								style={{ display: ownedWalks.length === 0 ? 'none' : 'block' }}>
+								Click on any walk to edit it!
+							</div>
+							<div
+								className='content'
+								style={{ display: ownedWalks !== 0 ? 'block' : 'none' }}>
+								{ownedWalks}
+							</div>
+						</div>
+					</Container>
+				</Jumbo>
+			</Styles>
+		);
+	}
+}
+
+export default LoggedInJumbo;

@@ -11,6 +11,7 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import { LoggedInNav } from './components/LoggedInNav';
 import LoggedInHome from './components/LoggedInHome';
+import axios from 'axios';
 import Home from './components/Home';
 import './App.css';
 
@@ -20,7 +21,9 @@ class App extends React.Component {
 		this.state = {
 			logged_in: localStorage.getItem('token') ? true : false,
 			username: '',
-			walks: [],
+			walks: null,
+			error: false,
+			errormessage: null,
 		};
 	}
 
@@ -37,6 +40,17 @@ class App extends React.Component {
 				});
 		}
 	}
+
+	getWalks = () => {
+		axios
+			.get(`http://localhost:8000/api/`)
+			.then((res) => {
+				this.setState({ walks: res.data });
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	handle_login = (e, data) => {
 		e.preventDefault();
@@ -55,8 +69,14 @@ class App extends React.Component {
 					displayed_form: '',
 					username: json.user.username,
 				});
+			})
+			.then((res) => {
+				this.get_walks();
+			})
+			.catch((err) => {
+				this.setState({ error: true });
+				this.handle_login_errors();
 			});
-		return <Redirect to='/home' />;
 	};
 
 	handle_signup = (e, data) => {
@@ -76,16 +96,39 @@ class App extends React.Component {
 					displayed_form: '',
 					username: json.username,
 				});
+			})
+			.then((res) => {
+				this.get_walks();
+			})
+			.catch((err) => {
+				this.setState({ error: true });
+				this.handle_signup_error();
 			});
 		return <Redirect to='/home' />;
 	};
 
 	handle_logout = () => {
 		localStorage.removeItem('token');
-		this.setState({ logged_in: false, username: '' });
+		this.setState({ logged_in: false, username: '', walks: null });
 		return <Redirect to='/home' />;
 	};
+	handle_signup_error = () => {
+		if (this.state.error) {
+			this.setState({
+				errormessage: 'That username already exists, please try another one.',
+			});
+		}
+		return <Redirect to='/signup' />;
+	};
 
+	handle_login_errors = () => {
+		if (this.state.error) {
+			this.setState({
+				errormessage: 'That username and password combination does not exist.',
+			});
+		}
+		return <Redirect to='/login' />;
+	};
 	render() {
 		return (
 			<>
@@ -101,7 +144,20 @@ class App extends React.Component {
 				</div>
 				<Router>
 					<Switch>
-						<Route exact={true} path='/' component={Home} />
+						<Route
+							exact={true}
+							path='/'
+							render={() => {
+								return (
+									<Home
+										username={this.state.username}
+										logged_in={this.state.logged_in}
+										walks={this.state.walks}
+										getWalks={this.getWalks}
+									/>
+								);
+							}}
+						/>
 						<Route
 							exact
 							path='/login'
@@ -110,6 +166,7 @@ class App extends React.Component {
 									<LoginForm
 										logged_in={this.state.logged_in}
 										handle_login={this.handle_login}
+										errormessage={this.state.errormessage}
 									/>
 								);
 							}}
@@ -126,13 +183,13 @@ class App extends React.Component {
 								);
 							}}
 						/>
-						<Route
+						{/* <Route
 							exact={true}
 							path='/home'
 							render={() => {
-								return <LoggedInHome />;
+								return <LoggedInHome walks={this.state.walks} logged_in={this.state.logged_in}/>;
 							}}
-						/>
+						/> */}
 					</Switch>
 				</Router>
 			</>

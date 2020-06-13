@@ -36,29 +36,33 @@ const Styles = styled.div`
 `;
 
 export const LoggedInNav = (props) => (
-	<Styles>
-		<Navbar expand='lg'>
-			<Navbar.Brand href='/'>Walker</Navbar.Brand>
-			<Navbar.Toggle aria-controls='basic-navbar' />
-			<Navbar.Collapse id='basic-navbar-nav'>
-				<Nav className='ml-auto'>
-					<Nav.Item className='item'>
-						<Button variant='outline-light' href='/'>
-							Welcome, {props.username}
-						</Button>
-					</Nav.Item>
-					<Nav.Item className='item'>
-						<Button variant='outline-light' href='/create'>
-							Add Walk
-						</Button>
-					</Nav.Item>
-					<Nav.Item className='item'>
-						<Button variant='outline-light' onClick={props.handle_logout}>
-							Logout
-						</Button>
-					</Nav.Item>
-				</Nav>
-			</Navbar.Collapse>
-		</Navbar>
-	</Styles>
-);
+					<Styles>
+						<Navbar expand='lg'>
+							<Navbar.Brand href='/'>Walker</Navbar.Brand>
+							<Navbar.Toggle aria-controls='basic-navbar' />
+							<Navbar.Collapse id='basic-navbar-nav'>
+								<Nav className='ml-auto'>
+									<Nav.Item className='item'>
+										<Button variant='outline-light' href='/'>
+											Welcome,{' '}
+											{props.username}
+										</Button>
+									</Nav.Item>
+									<Nav.Item className='item'>
+										<Button variant='outline-light' href='/create'>
+											Add Walk
+										</Button>
+									</Nav.Item>
+									<Nav.Item className='item'>
+										<Button
+											variant='outline-light'
+											onClick={props.handle_logout}
+											href='/'>
+											Logout
+										</Button>
+									</Nav.Item>
+								</Nav>
+							</Navbar.Collapse>
+						</Navbar>
+					</Styles>
+				);
