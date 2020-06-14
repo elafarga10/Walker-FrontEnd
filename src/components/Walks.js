@@ -91,10 +91,7 @@ class Walks extends React.Component {
 		this.state = {
 			show: false,
 			setShow: false,
-            refresh: false,
-            distance: null,
-            time: null,
-            weight: null
+			refresh: false,
 		};
 	}
 	handleClose = () => {
@@ -104,6 +101,7 @@ class Walks extends React.Component {
 	handleShow = () => {
 		this.setState({ show: true });
 	};
+
 	render() {
 		return (
 			<Styles>
@@ -148,6 +146,7 @@ class Walks extends React.Component {
 						className='stats'
 						variant='outline-light'>
 						<div className='flex-container'>
+							<div> Date: {this.props.date}</div>
 							<div> Distance: {this.props.distance} mi</div>
 							<div>Time: {this.props.time} min</div>
 							<div>Weight: {this.props.weight} lbs</div>

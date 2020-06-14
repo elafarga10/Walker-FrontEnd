@@ -11,7 +11,7 @@ const Styles = styled.div`
 	.item {
 		margin-right: 20px;
 		color: #5f9ea0;
-		font-weight: bold
+		font-weight: bold;
 	}
 
 	.item:hover {
@@ -45,20 +45,58 @@ const Styles = styled.div`
 `;
 
 class LoggedInNav extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			show: false,
 			setShow: false,
+			distance: '',
+			time: '',
+			weight: '',
 		};
 	}
 	handleClose = () => {
 		this.setState({ show: false });
 	};
 
+	handleChange = (evt) => {
+		this.setState({
+			[evt.target.name]: evt.target.value,
+		});
+	}
 	handleShow = () => {
 		this.setState({ show: true });
 	};
+
+	handleSubmit = (evt) => {
+		evt.preventDefault();
+
+		const walk = {
+			distance: this.state.distance,
+			time: this.state.time,
+			weight: this.state.weight,
+		};
+		fetch('http://localhost:8000/api/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `JWT ${localStorage.getItem('token')}`,
+			},
+			body: JSON.stringify(walk),
+		})
+			// .then((res) => {
+			// 	setTimeout(() => {
+			// 		this.props.history.push('/');
+			// 	}, 500);
+			// })
+			.then((res) => {
+				this.handleClose();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	render() {
 		return (
 			<Styles>
@@ -101,19 +139,28 @@ class LoggedInNav extends React.Component {
 								<Form.Label>Distance (in miles)</Form.Label>
 								<Form.Control
 									type='text'
-									placeholder='How far did you walk?'></Form.Control>
+									name='distance'
+									onChange={this.handleChange}
+									placeholder='How far did you walk?'
+									value={this.state.distance}></Form.Control>
 							</Form.Group>
 							<Form.Group>
 								<Form.Label>Time (in minutes)</Form.Label>
 								<Form.Control
 									type='text'
+									name='time'
+									onChange={this.handleChange}
+									value={this.state.time}
 									placeholder='How long did it take you?'></Form.Control>
 							</Form.Group>
 							<Form.Group>
 								<Form.Label>Weight (in pounds)</Form.Label>
 								<Form.Control
 									type='text'
-									placeholder='What is your dogs weight currently?'></Form.Control>
+									name='weight'
+									onChange={this.handleChange}
+									placeholder='What is your dogs weight currently?'
+									value={this.state.weight}></Form.Control>
 							</Form.Group>
 						</Form>
 					</Modal.Body>
@@ -121,8 +168,8 @@ class LoggedInNav extends React.Component {
 						<Button variant='secondary' onClick={this.handleClose}>
 							Close
 						</Button>
-						<Button variant='primary' onClick={this.handleClose}>
-							Save Changes
+						<Button variant='primary' onClick={this.handleSubmit}>
+							Create Walk
 						</Button>
 					</Modal.Footer>
 				</Modal>
