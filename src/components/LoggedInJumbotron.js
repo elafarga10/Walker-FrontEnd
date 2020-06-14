@@ -40,14 +40,14 @@ const Styles = styled.div`
 
 	.content {
 		padding: 70px 0;
-    }
-    .edit-text{
-        margin-bottom: 0;
-        font-size: 18px;
-        font-weight: bold;
-        color: #efefef;
-        opacity: 0.9;
-    }
+	}
+	.edit-text {
+		margin-bottom: 0;
+		font-size: 18px;
+		font-weight: bold;
+		color: #efefef;
+		opacity: 0.9;
+	}
 `;
 
 class LoggedInJumbo extends React.Component {
@@ -74,6 +74,8 @@ class LoggedInJumbo extends React.Component {
 			return (
 				<div id={walk.id}>
 					<Walks
+						id={walk.id}
+						getWalks={this.props.getWalks}
 						date={walk.date}
 						distance={walk.distance}
 						time={walk.time}

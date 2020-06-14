@@ -1,13 +1,13 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
+import styled from 'styled-components';
 class SignupForm extends React.Component {
 	state = {
 		username: '',
 		password: '',
 		error: false,
 		errormessage: null,
-		
 	};
 
 	handle_change = (e) => {
@@ -22,10 +22,10 @@ class SignupForm extends React.Component {
 	};
 
 	check_username = () => {
-		if(this.state.username.length < 4){
-			this.setState({errormesage: 'Username must be 4 characters or longer'})
+		if (this.state.username.length < 4) {
+			this.setState({ errormesage: 'Username must be 4 characters or longer' });
 		}
-	}
+	};
 
 	render(props) {
 		if (this.props.logged_in) {
@@ -33,7 +33,34 @@ class SignupForm extends React.Component {
 		}
 		return (
 			<>
-				<form onSubmit={(e) => this.props.handle_signup(e, this.state)}>
+				<Form>
+					<Form.Group>
+						<Form.Label htmlFor='username'>Username</Form.Label>
+						<Form.Control
+							type='text'
+							name='username'
+							value={this.state.username}
+							onChange={this.handle_change}></Form.Control>
+					</Form.Group>
+					<Form.Group controlId='formBasicPassword'>
+						<Form.Label htmlFor='password'>Password</Form.Label>
+						<Form.Control
+							type='password'
+							name='password'
+							value={this.state.password}
+							onChange={this.handle_change}></Form.Control>
+					</Form.Group>
+					<Button onClick={(e) => this.props.handle_signup(e, this.state)}>
+						Submit
+					</Button>
+				</Form>
+				<div
+					style={{
+						display: this.state.errormessage === null ? 'none' : 'block',
+					}}>
+					{this.state.errormessage}
+				</div>
+				{/* <form onSubmit={(e) => this.props.handle_signup(e, this.state)}>
 					<h4>Sign Up</h4>
 					<label htmlFor='username'>Username</label>
 					<input
@@ -53,7 +80,7 @@ class SignupForm extends React.Component {
 				</form>
 				<div style={{display: this.state.errormessage === null ? 'none' : 'block'}}>
 					{this.state.errormessage}
-				</div>
+				</div> */}
 			</>
 		);
 	}

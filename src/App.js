@@ -137,6 +137,7 @@ class App extends React.Component {
 				</div>
 				<div style={{ display: this.state.logged_in ? 'block' : 'none' }}>
 					<LoggedInNav
+						getWalks={this.getWalks}
 						logout={this.handle_logout}
 						handle_logout={this.handle_logout}
 						username={this.state.username}
@@ -158,7 +159,8 @@ class App extends React.Component {
 								);
 							}}
 						/>
-						<Route
+						<Layout>
+							<Route
 							exact
 							path='/login'
 							render={() => {
@@ -183,13 +185,8 @@ class App extends React.Component {
 								);
 							}}
 						/>
-						{/* <Route
-							exact={true}
-							path='/home'
-							render={() => {
-								return <LoggedInHome walks={this.state.walks} logged_in={this.state.logged_in}/>;
-							}}
-						/> */}
+						</Layout>
+						
 					</Switch>
 				</Router>
 			</>

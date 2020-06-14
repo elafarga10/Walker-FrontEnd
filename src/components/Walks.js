@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Card, Modal, Form } from 'react-bootstrap';
 import styled from 'styled-components';
-import CreateWalk from './CreateWalk';
 
 let Styles = styled.div`
 	.stats {
@@ -18,6 +17,7 @@ let Styles = styled.div`
 	.card {
 		border: none;
 		background-color: transparent;
+		margin-top: 10px;
 	}
 
 	@-webkit-keyframes hvr-bob {
@@ -86,12 +86,15 @@ let Styles = styled.div`
 `;
 
 class Walks extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			show: false,
 			setShow: false,
 			refresh: false,
+			newTime: this.props.time,
+			newDistance: this.props.distance,
+			newWeight: this.props.weight,
 		};
 	}
 	handleClose = () => {
@@ -100,6 +103,58 @@ class Walks extends React.Component {
 
 	handleShow = () => {
 		this.setState({ show: true });
+	};
+	handleChange = (evt) => {
+		this.setState({
+			[evt.target.name]: evt.target.value,
+		});
+	};
+
+	handleDelete = () => {
+		const url = `http://localhost:8000/api/${this.props.id}`;
+		fetch(url, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `JWT ${localStorage.getItem('token')}`,
+			},
+		})
+			.then((res) => {
+				this.props.getWalks();
+            })
+            .then(res => {
+                this.handleClose();
+            })
+			.catch((err) => {
+				console.error(err);
+			});
+	};
+
+	handleSubmit = (evt) => {
+		evt.preventDefault();
+		const url = `http://localhost:8000/api/${this.props.id}`;
+		const walk = {
+			distance: this.state.newDistance,
+			time: this.state.newTime,
+			weight: this.state.newWeight,
+		};
+		fetch(url, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `JWT ${localStorage.getItem('token')}`,
+			},
+			body: JSON.stringify(walk),
+		})
+			.then((res) => {
+				this.handleClose();
+			})
+			.then((res) => {
+				this.props.getWalks();
+			})
+			.catch((err) => {
+				console.error(err);
+			});
 	};
 
 	render() {
@@ -115,18 +170,24 @@ class Walks extends React.Component {
 								<Form.Label>Distance (in miles)</Form.Label>
 								<Form.Control
 									type='text'
+									name='newDistance'
+									onChange={this.handleChange}
 									placeholder={this.props.distance}></Form.Control>
 							</Form.Group>
 							<Form.Group>
 								<Form.Label>Time (in minutes)</Form.Label>
 								<Form.Control
 									type='text'
+									name='newTime'
+									onChange={this.handleChange}
 									placeholder={this.props.time}></Form.Control>
 							</Form.Group>
 							<Form.Group>
 								<Form.Label>Weight (in pounds)</Form.Label>
 								<Form.Control
 									type='text'
+									name='newWeight'
+									onChange={this.handleChange}
 									placeholder={this.props.weight}></Form.Control>
 							</Form.Group>
 						</Form>
@@ -135,7 +196,10 @@ class Walks extends React.Component {
 						<Button variant='secondary' onClick={this.handleClose}>
 							Close
 						</Button>
-						<Button variant='primary' onClick={this.handleClose}>
+						<Button variant='danger' onClick={this.handleDelete}>
+							Delete
+						</Button>
+						<Button variant='primary' onClick={this.handleSubmit}>
 							Save Changes
 						</Button>
 					</Modal.Footer>

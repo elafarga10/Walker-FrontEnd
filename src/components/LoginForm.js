@@ -1,5 +1,18 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { Form, Button, Card } from 'react-bootstrap';
+import styled from 'styled-components';
+
+
+let Styles = styled.div`
+	.username {
+		margin-top: 25px;
+		width: 100%;
+	}
+	.card {
+		
+	}
+`;
 
 class LoginForm extends React.Component {
 	state = {
@@ -22,8 +35,35 @@ class LoginForm extends React.Component {
 			return <Redirect to='/' />;
 		}
 		return (
-			<>
-				<div className='auth-forms'>
+			<Styles>
+				<Card>
+					<Form>
+						<Form.Group className='username'>
+							<Form.Label htmlFor='username'>Username</Form.Label>
+							<Form.Control
+								type='text'
+								name='username'
+								value={this.state.username}
+								onChange={this.handle_change}></Form.Control>
+						</Form.Group>
+						<Form.Group className='password' controlId='formBasicPassword'>
+							<Form.Label htmlFor='password'>Password</Form.Label>
+							<Form.Control
+								type='password'
+								name='password'
+								value={this.state.password}
+								onChange={this.handle_change}></Form.Control>
+						</Form.Group>
+						<Button onClick={(e) => this.props.handle_login(e, this.state)}>
+							Submit
+						</Button>
+					</Form>
+					<div style={{ display: this.props.errormessage ? 'block' : 'none' }}>
+						{this.props.errormessage}
+					</div>
+				</Card>
+
+				{/* <div className='auth-forms'>
 					<form onSubmit={(e) => this.props.handle_login(e, this.state)}>
 						<label htmlFor='username'>Username</label>
 						<input
@@ -44,8 +84,8 @@ class LoginForm extends React.Component {
 				</div>
 				<div style={{ display: this.props.errormessage ? 'block' : 'none' }}>
 					{this.props.errormessage}
-				</div>
-			</>
+				</div> */}
+			</Styles>
 		);
 	}
 }

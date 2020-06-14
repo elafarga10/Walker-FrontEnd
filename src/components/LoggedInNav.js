@@ -84,13 +84,11 @@ class LoggedInNav extends React.Component {
 			},
 			body: JSON.stringify(walk),
 		})
-			// .then((res) => {
-			// 	setTimeout(() => {
-			// 		this.props.history.push('/');
-			// 	}, 500);
-			// })
 			.then((res) => {
 				this.handleClose();
+			})
+			.then(res => {
+				this.props.getWalks();
 			})
 			.catch((err) => {
 				console.log(err);
