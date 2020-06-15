@@ -10,7 +10,12 @@ class Home extends React.Component {
 					<Jumbotron />
 				</div>
 				<div style={{ display: this.props.logged_in ? 'block' : 'none' }}>
-					<LoggedInHome username={this.props.username} getWalks={this.props.getWalks} walks={this.props.walks}/>
+					<LoggedInHome
+						handle_logout={this.props.handle_logout}
+						username={this.props.username}
+						getWalks={this.props.getWalks}
+						walks={this.props.walks}
+					/>
 				</div>
 			</>
 		);

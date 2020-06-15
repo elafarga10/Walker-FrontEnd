@@ -7,6 +7,7 @@ const Styles = styled.div`
 		height: 55px;
 		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 		margin-bottom: 0px;
+		
 	}
 	.item {
 		margin-right: 20px;

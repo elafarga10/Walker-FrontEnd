@@ -151,6 +151,7 @@ class App extends React.Component {
 							render={() => {
 								return (
 									<Home
+										handle_logout={this.handle_logout}
 										username={this.state.username}
 										logged_in={this.state.logged_in}
 										walks={this.state.walks}

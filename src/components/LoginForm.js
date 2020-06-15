@@ -104,6 +104,12 @@ let Styles = styled.div`
 		z-index: -1;
 	}
 
+	.error {
+		color: red;
+		font-size: 13px;
+		text-align: center;
+	}
+
 	p {
 		color: #000;
 		text-align: center;

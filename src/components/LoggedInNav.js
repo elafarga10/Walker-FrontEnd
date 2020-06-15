@@ -20,6 +20,12 @@ const Styles = styled.div`
 
 	.button {
 		font-weight: bold;
+		border: none;
+		color: #5f9ea0;
+	}
+
+	.button:hover {
+		color: #000;
 	}
 
 	a,
@@ -37,6 +43,7 @@ const Styles = styled.div`
 
 	.navbar-brand {
 		margin-left: 120px;
+		font-size: 16px;
 		color: #5f9ea0;
 		&:hover {
 			color: black;
@@ -55,6 +62,7 @@ class LoggedInNav extends React.Component {
 			weight: '',
 		};
 	}
+
 	handleClose = () => {
 		this.setState({ show: false });
 	};
@@ -63,7 +71,7 @@ class LoggedInNav extends React.Component {
 		this.setState({
 			[evt.target.name]: evt.target.value,
 		});
-	}
+	};
 	handleShow = () => {
 		this.setState({ show: true });
 	};
@@ -87,7 +95,7 @@ class LoggedInNav extends React.Component {
 			.then((res) => {
 				this.handleClose();
 			})
-			.then(res => {
+			.then((res) => {
 				this.props.getWalks();
 			})
 			.catch((err) => {
@@ -104,14 +112,14 @@ class LoggedInNav extends React.Component {
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='ml-auto'>
 							<Nav.Item className='item'>
-								<Button variant='outline-light' href='/'>
+								<Button className='button' variant='outline-light' href='/'>
 									Welcome,{' '}
 									{this.props.username}
 								</Button>
 							</Nav.Item>
 							<Nav.Item className='item'>
 								<Button
-									className='item'
+									className='button'
 									variant='outline-light'
 									onClick={this.handleShow}>
 									Add Walk
@@ -119,6 +127,7 @@ class LoggedInNav extends React.Component {
 							</Nav.Item>
 							<Nav.Item className='item'>
 								<Button
+									className='button'
 									variant='outline-light'
 									onClick={this.props.handle_logout}
 									href='/'>
