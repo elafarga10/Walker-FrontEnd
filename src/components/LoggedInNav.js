@@ -106,7 +106,7 @@ class LoggedInNav extends React.Component {
 							<Nav.Item className='item'>
 								<Button variant='outline-light' href='/'>
 									Welcome,{' '}
-									{this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}
+									{this.props.username}
 								</Button>
 							</Nav.Item>
 							<Nav.Item className='item'>

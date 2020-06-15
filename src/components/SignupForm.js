@@ -30,9 +30,46 @@ let Styles = styled.div`
 		color: #000;
 	}
 	.submit {
-		padding-top: 35px;
+		padding-top: 15px;
 		margin-left: 155px;
 		margin-right: 155px;
+	}
+
+	.button {
+		background-color: transparent;
+		border: none;
+		border-radius: 0px;
+		color: CadetBlue;
+		font-weight: bold;
+		-webkit-transform: perspective(1px) translateZ(0);
+		transform: perspective(1px) translateZ(0);
+		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.button:before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: 51%;
+		right: 51%;
+		bottom: 0;
+		background: #000;
+		height: 4px;
+		-webkit-transition-property: left, right;
+		transition-property: left, right;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+	}
+
+	.button:hover:before,
+	.button:focus:before,
+	.button:active:before {
+		left: 0;
+		right: 0;
 	}
 	.card {
 		padding: 70px 0;
@@ -137,8 +174,10 @@ class SignupForm extends React.Component {
 									</div>
 									<div className='submit'>
 										<Button
+											variant='outline-light'
+											className='button'
 											onClick={(e) => this.props.handle_signup(e, this.state)}>
-											Submit
+											Sign Up
 										</Button>
 									</div>
 								</Form>

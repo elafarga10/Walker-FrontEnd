@@ -2,7 +2,6 @@ import React from 'react';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 
-
 const Styles = styled.div`
 	.navbar {
 		height: 55px;
@@ -33,29 +32,31 @@ const Styles = styled.div`
 			color: black;
 		}
 	}
+	.button {
+		border: none;
+		background-color: transparent;
+	}
 `;
 
 export const NavigationBar = () => (
 	<Styles>
 		<Navbar expand='lg'>
-			<Navbar.Brand href='/'>
-				Walker
-			</Navbar.Brand>
+			<Navbar.Brand href='/'>Walker</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav className='ml-auto'>
 					<Nav.Item className='item'>
-						<Button variant='outline-light' href='/'>
+						<Button variant='outline-light' className='button' href='/'>
 							Home
 						</Button>
 					</Nav.Item>
 					<Nav.Item className='item'>
-						<Button variant='outline-light' href='/login'>
-						Login
+						<Button variant='outline-light' className='button' href='/login'>
+							Login
 						</Button>
 					</Nav.Item>
 					<Nav.Item className='item'>
-						<Button variant='outline-light' href='/signup'>
+						<Button variant='outline-light' className='button' href='/signup'>
 							Sign Up
 						</Button>
 					</Nav.Item>

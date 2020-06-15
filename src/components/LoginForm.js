@@ -34,6 +34,44 @@ let Styles = styled.div`
 		margin-left: 155px;
 		margin-right: 155px;
 	}
+
+	.button {
+		background-color: transparent;
+		border: none;
+		border-radius: 0px;
+		color: CadetBlue;
+		font-weight: bold;
+		-webkit-transform: perspective(1px) translateZ(0);
+		transform: perspective(1px) translateZ(0);
+		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.button:before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: 51%;
+		right: 51%;
+		bottom: 0;
+		background: #000;
+		height: 4px;
+		-webkit-transition-property: left, right;
+		transition-property: left, right;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+	}
+
+	.button:hover:before,
+	.button:focus:before,
+	.button:active:before {
+		left: 0;
+		right: 0;
+	}
+
 	.card {
 		padding: 70px 0;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -101,6 +139,13 @@ class LoginForm extends React.Component {
 						<div className='content'>
 							<Card>
 								<Card.Title className='login'>Login</Card.Title>
+								<div
+									className='error'
+									style={{
+										display: this.props.errormessage ? 'block' : 'none',
+									}}>
+									{this.props.errormessage}
+								</div>
 								<Form>
 									<Form.Group className='username'>
 										<div className='box1'>
@@ -129,17 +174,13 @@ class LoginForm extends React.Component {
 									</div>
 									<div className='submit'>
 										<Button
+											variant='outline-light'
+											className='button'
 											onClick={(e) => this.props.handle_login(e, this.state)}>
-											Submit
+											Login
 										</Button>
 									</div>
 								</Form>
-								<div
-									style={{
-										display: this.props.errormessage ? 'block' : 'none',
-									}}>
-									{this.props.errormessage}
-								</div>
 							</Card>
 						</div>
 					</Container>
