@@ -105,7 +105,8 @@ class LoggedInNav extends React.Component {
 						<Nav className='ml-auto'>
 							<Nav.Item className='item'>
 								<Button variant='outline-light' href='/'>
-									Welcome, {this.props.username}
+									Welcome,{' '}
+									{this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1)}
 								</Button>
 							</Nav.Item>
 							<Nav.Item className='item'>

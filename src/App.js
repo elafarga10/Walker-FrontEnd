@@ -9,7 +9,7 @@ import { Layout } from './components/Layout';
 import { NavigationBar } from './components/Navigation';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
-import  LoggedInNav  from './components/LoggedInNav';
+import LoggedInNav from './components/LoggedInNav';
 import LoggedInHome from './components/LoggedInHome';
 import axios from 'axios';
 import Home from './components/Home';
@@ -159,8 +159,8 @@ class App extends React.Component {
 								);
 							}}
 						/>
-						<Layout>
-							<Route
+
+						<Route
 							exact
 							path='/login'
 							render={() => {
@@ -185,8 +185,6 @@ class App extends React.Component {
 								);
 							}}
 						/>
-						</Layout>
-						
 					</Switch>
 				</Router>
 			</>

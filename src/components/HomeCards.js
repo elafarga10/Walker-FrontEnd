@@ -92,13 +92,13 @@ export const InfoCards = () => (
 							<LinkContainer to={`/`}>
 								<Card className='card'>
 									
-									<Card.Body>
-										<Card.Title className='text'>
+									<Card.Body className='text'>
+										<Card.Title >
 											Not just for your dog
 										</Card.Title>
-										<Card.Text className='text'>
+										<Card.Text >
 											With the ability to record distance and time you can easily keep a record of your own
-											personal best walks
+											personal best walks.
 										</Card.Text>
 									</Card.Body>
 								</Card>
@@ -117,10 +117,9 @@ export const InfoCards = () => (
 							<Card>
 								
 								<Card.Body className='text'>
-									<Card.Title>Visual Progress</Card.Title>
+									<Card.Title>Simple Fix</Card.Title>
 									<Card.Text>
-										Want to upload images too? Walker allows for users to upload
-										their own images of their dogs via url!
+										Make a mistake? Walker allows for easy editing or deleting of individual walks so your stats can always be up to date!
 									</Card.Text>
 								</Card.Body>
 							</Card>
