@@ -18,6 +18,10 @@ const Styles = styled.div`
 		color: black;
 	}
 
+	.modal-button {
+		color: black;
+	}
+
 	.button {
 		font-weight: bold;
 		border: none;
@@ -113,8 +117,7 @@ class LoggedInNav extends React.Component {
 						<Nav className='ml-auto'>
 							<Nav.Item className='item'>
 								<Button className='button' variant='outline-light' href='/'>
-									Welcome,{' '}
-									{this.props.username}
+									Welcome, {this.props.username}
 								</Button>
 							</Nav.Item>
 							<Nav.Item className='item'>
@@ -137,7 +140,7 @@ class LoggedInNav extends React.Component {
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
-				<Modal show={this.state.show} onHide={this.handleClose}>
+				<Modal centered show={this.state.show} onHide={this.handleClose}>
 					<Modal.Header closeButton>
 						<Modal.Title>Add Walk</Modal.Title>
 					</Modal.Header>

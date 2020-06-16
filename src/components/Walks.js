@@ -160,7 +160,7 @@ class Walks extends React.Component {
 	render() {
 		return (
 			<Styles>
-				<Modal show={this.state.show} onHide={this.handleClose}>
+				<Modal centered show={this.state.show} onHide={this.handleClose}>
 					<Modal.Header closeButton>
 						<Modal.Title>Edit Walk</Modal.Title>
 					</Modal.Header>
