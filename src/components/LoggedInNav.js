@@ -84,7 +84,7 @@ class LoggedInNav extends React.Component {
 			time: this.state.time,
 			weight: this.state.weight,
 		};
-		fetch('http://localhost:8000/api/', {
+		fetch(' https://immense-forest-65867.herokuapp.com/api/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

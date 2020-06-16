@@ -111,7 +111,7 @@ class Walks extends React.Component {
 	};
 
 	handleDelete = () => {
-		const url = `http://localhost:8000/api/${this.props.id}`;
+		const url = ` https://immense-forest-65867.herokuapp.com/api/${this.props.id}`;
 		fetch(url, {
 			method: 'DELETE',
 			headers: {
@@ -132,7 +132,7 @@ class Walks extends React.Component {
 
 	handleSubmit = (evt) => {
 		evt.preventDefault();
-		const url = `http://localhost:8000/api/${this.props.id}`;
+		const url = ` https://immense-forest-65867.herokuapp.com/api/${this.props.id}`;
 		const walk = {
 			distance: this.state.newDistance,
 			time: this.state.newTime,

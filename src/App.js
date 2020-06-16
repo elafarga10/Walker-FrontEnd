@@ -29,7 +29,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		if (this.state.logged_in) {
-			fetch('http://localhost:8000/core/current_user/', {
+			fetch(' https://immense-forest-65867.herokuapp.com/core/current_user/', {
 				headers: {
 					Authorization: `JWT ${localStorage.getItem('token')}`,
 				},
@@ -43,7 +43,7 @@ class App extends React.Component {
 
 	getWalks = () => {
 		axios
-			.get(`http://localhost:8000/api/`)
+			.get(` https://immense-forest-65867.herokuapp.com/api/`)
 			.then((res) => {
 				this.setState({ walks: res.data });
 			})
@@ -54,7 +54,7 @@ class App extends React.Component {
 
 	handle_login = (e, data) => {
 		e.preventDefault();
-		fetch('http://localhost:8000/token-auth/', {
+		fetch(' https://immense-forest-65867.herokuapp.com/token-auth/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ class App extends React.Component {
 
 	handle_signup = (e, data) => {
 		e.preventDefault();
-		fetch('http://localhost:8000/core/users/', {
+		fetch(' https://immense-forest-65867.herokuapp.com/core/users/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
